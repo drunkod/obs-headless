@@ -6,7 +6,7 @@ FROM ghcr.io/drunkod/obs-headless-base:alpine-base-latest
 
 # Install necessary packages for building libobs-opengl
 RUN apk add --no-cache mesa-dev mesa-dri-gallium mesa-egl mesa-gl mesa-gles libdrm libdrm-dev wayland-dev libx11-dev \
-	wayland-libs-egl musl wayland-libs-client libx11
+	wayland-libs-egl musl wayland-libs-client libx11 obs-studio
 RUN apk info mesa-gl
 
 # Build OBS from sources
