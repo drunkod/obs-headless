@@ -1,7 +1,8 @@
 ARG OBS_VERSION
 ARG OS_NAME
 
-FROM ghcr.io/drunkod/obs-headless-base:${OS_NAME}-base-${OBS_VERSION}
+# FROM ghcr.io/drunkod/obs-headless-base:${OS_NAME}-base-${OBS_VERSION}
+FROM ghcr.io/drunkod/obs-headless-base:alpine-base-latest
 
 # Build OBS from sources
 ENV OBS_BUILD_PATH="./build"
