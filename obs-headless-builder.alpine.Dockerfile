@@ -1,4 +1,6 @@
 ARG OBS_VERSION
+ARG OS_NAME
+
 FROM ghcr.io/drunkod/obs-headless-base:${{ env.OS_NAME }}-base-${OBS_VERSION}
 
 # Build OBS from sources
