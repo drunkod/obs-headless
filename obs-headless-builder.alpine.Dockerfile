@@ -11,7 +11,7 @@ RUN apk info mesa-gl
 
 # Build OBS from sources
 ENV OBS_BUILD_PATH="./build"
-ENV OBS_INSTALL_PATH="/opt/obs-studio-portable"
+ENV OBS_INSTALL_PATH="/usr/local/lib/"
 
 ARG OBS_VERSION
 
@@ -21,7 +21,7 @@ RUN git clone --branch ${OBS_VERSION} --recursive https://github.com/obsproject/
 		-B ${OBS_BUILD_PATH} \
 		-G Ninja \
 		-DCEF_ROOT_DIR="../obs-build-dependencies/cef_binary_5060_linux64" \
-		-DLINUX_PORTABLE=ON \
+# 		-DLINUX_PORTABLE=ON \
 		-DENABLE_BROWSER=OFF \
 		-DENABLE_PIPEWIRE=OFF \
 		-DENABLE_AJA=OFF \
