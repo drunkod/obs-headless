@@ -6,18 +6,18 @@ WORKDIR /usr/local/src
 RUN apk add --no-cache \
     meson \
     \
-    cmake ninja pkgconf clang clang-format build-base curl \
+    cmake ninja pkgconf clang15-extra-tools build-base curl \
     ccache git \
     \
-    ffmpeg-dev libx264-dev libcurl libcurl-dev mbedtls-dev libjansson-dev \
+    ffmpeg-dev x264-dev libcurl curl-dev mbedtls-dev jansson-dev \
     luajit-dev python3-dev libx11-dev \
     \
     qt5-qtbase-dev qt5-qtsvg-dev qt5-qtx11extras-dev qt5-qtwayland \
     \
     alsa-lib-dev fdk-aac-dev fontconfig-dev freetype-dev jack-dev \
-    pulseaudio-dev speexdsp-dev udev-dev v4l-utils-dev vlc-dev \
+    pulseaudio-dev speexdsp-dev eudev-dev v4l-utils-dev vlc-dev \
     \
-    grpc++ grpc-dev protobuf-dev \
+    grpc grpc-cpp grpc-dev protobuf-dev \
     \
     vim gdb valgrind net-tools iptables procps tcpdump \
     linux-tools
