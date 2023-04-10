@@ -4,6 +4,10 @@ ARG OS_NAME
 # FROM ghcr.io/drunkod/obs-headless-base:${OS_NAME}-base-${OBS_VERSION}
 FROM ghcr.io/drunkod/obs-headless-base:alpine-base-latest
 
+# Install necessary packages for building libobs-opengl
+RUN apk add --no-cache mesa-dev mesa-dri-gallium mesa-egl mesa-gl mesa-gles libdrm
+RUN apk info mesa-gl
+
 # Build OBS from sources
 ENV OBS_BUILD_PATH="./build"
 ENV OBS_INSTALL_PATH="/opt/obs-studio-portable"
