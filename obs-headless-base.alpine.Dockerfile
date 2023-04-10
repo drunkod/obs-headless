@@ -20,7 +20,7 @@ RUN apk add --no-cache \
     grpc grpc-cpp grpc-dev protobuf-dev \
     \
     vim gdb valgrind net-tools iptables procps tcpdump \
-    linux-tools swig
+    linux-tools swig mesa
 
 # Install librist (OBS dependency)
 RUN git clone https://code.videolan.org/rist/librist.git \
