@@ -53,7 +53,7 @@ jobs:
                   file: ./obs-headless-builder.alpine.Dockerfile
                   build-args: |
                       OBS_VERSION=${{ env.OBS_VERSION }}
-                      OS_VERSION=${{ env.OS_VERSION }}
+                      OS_NAME=${{ env.OS_NAME }}
                   platforms: linux/amd64,linux/arm64,linux/arm/v7
                   push: true
                   tags: |
