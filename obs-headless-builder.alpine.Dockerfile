@@ -6,6 +6,7 @@ FROM ghcr.io/drunkod/obs-headless-base:${OS_NAME}-base-${OBS_VERSION}
 # Build OBS from sources
 ENV OBS_BUILD_PATH="./build"
 ENV OBS_INSTALL_PATH="/opt/obs-studio-portable"
+ENV OBS_VERSION=${OBS_VERSION}
 
 RUN git clone --branch ${OBS_VERSION} --recursive https://github.com/obsproject/obs-studio.git \
 	&& cd obs-studio \
