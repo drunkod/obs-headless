@@ -8,11 +8,14 @@ FROM ghcr.io/drunkod/obs-headless-builder:alpine-builder-latest
 
 
 RUN apk add --no-cache --update py3-paramiko py3-cairo py3-netifaces py3-zeroconf 
-# py3-avahi 
-# TODO py3-xdg
+
 RUN apk add --no-cache --update xpra xpra-openrc dbus-x11 xhost xpra-webclient
 
-RUN apk add --no-cache xterm
+RUN apk update \
+&& apk add --no-cache py3-avahi --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main/
+
+
+RUN apk add --no-cache xterm py3-xdg
 RUN cp /etc/xpra/xorg.conf /etc/X11/xorg.conf.d/00_xpra.conf
 RUN echo "xvfb=Xorg" >> /etc/xpra/xpra.conf
 
