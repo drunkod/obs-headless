@@ -20,7 +20,7 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v2
       - name: 'Extract rootfs' 
-        uses: custom/        
+        uses: ./custom/        
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
