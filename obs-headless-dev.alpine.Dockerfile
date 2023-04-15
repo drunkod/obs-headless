@@ -1,3 +1,4 @@
+# Define variables for the OBS version and the OS name
 ARG OBS_VERSION
 ARG OS_NAME
 
@@ -5,12 +6,17 @@ ARG OS_NAME
 
 FROM ghcr.io/drunkod/obs-headless-builder:alpine-builder-latest
 
+
+# Set the environment variable for non-interactive mode
 ENV DEBIAN_FRONTEND=noninteractive
+# Set the working directory to /usr/local/src
 WORKDIR /usr/local/src
 
 ENV OBS_INSTALL_PATH="usr/share/obs"
 ENV OBS_HEADLESS_INSTALL_PATH="usr/share/obs-headles"
+
 COPY src/ /usr/local/src/obs-headless
+# Run commands to build obs-headless
 RUN cd obs-headless \
 	\
 	&& echo -e "\033[32mGenerating proto files...\033[0m" \
@@ -31,6 +37,8 @@ RUN cd obs-headless \
 	&& make -j$(nproc) \
 	&& make install
 
+# Copy the configuration files from the current directory to the image
 COPY etc/ /opt/obs-headless/etc
 
+# Define the default command to run when the container is started
 ENTRYPOINT ["/opt/obs-headless/etc/docker-entrypoint.sh"]
