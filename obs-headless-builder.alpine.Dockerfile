@@ -13,18 +13,30 @@ RUN apk info mesa-gl obs-studio
 ENV OBS_BUILD_PATH="./build"
 ENV OBS_INSTALL_PATH="usr/share/obs"
 
-# ARG OBS_VERSION
+ARG OBS_VERSION
 
-# RUN git clone --branch ${OBS_VERSION} --recursive https://github.com/obsproject/obs-studio.git \
-# 	&& cd obs-studio \
-# 	&& cmake -S . \
-# 		-B ${OBS_BUILD_PATH} \
-# 		-G Ninja \
-# 		-DCEF_ROOT_DIR="../obs-build-dependencies/cef_binary_5060_linux64" \
-# 		-DLINUX_PORTABLE=ON \
-# 		-DENABLE_BROWSER=OFF \
-# 		-DENABLE_PIPEWIRE=OFF \
-# 		-DENABLE_AJA=OFF \
-# 		-DENABLE_LIBFDK=ON \
-# 	&& cmake --build ${OBS_BUILD_PATH} \
-# 	&& cmake --install ${OBS_BUILD_PATH} --prefix ${OBS_INSTALL_PATH}
+
+# Clones OBS Studio repository from GitHub using a specific version 
+RUN git clone --branch ${OBS_VERSION} --recursive https://github.com/obsproject/obs-studio.git \
+    # Changes directory to obs-studio 
+    && cd obs-studio \
+	# Runs CMake with various build configurations using Ninja as the generator 
+    && cmake -S . \
+        -B ${OBS_BUILD_PATH} \
+        -G Ninja \
+        # Instructs CMake to utilize a specific Chromium Embedded Framework (CEF) binary 
+        -DCEF_ROOT_DIR="../obs-build-dependencies/cef_binary_5060_linux64" \
+        # Enables portability for Linux 
+        -DLINUX_PORTABLE=ON \
+        # Disables OBS Studio Browser functionality 
+        -DENABLE_BROWSER=OFF \
+        # Disables PipeWire and AJA 
+        -DENABLE_PIPEWIRE=OFF \
+        -DENABLE_AJA=OFF \
+        # Enables support for the FDK-AAC library 
+        -DENABLE_LIBFDK=ON \
+    # Builds the project 
+    && cmake --build ${OBS_BUILD_PATH} \
+    # Installs the built project to the specified installation path 
+    && cmake --install ${OBS_BUILD_PATH} --prefix ${OBS_INSTALL_PATH}
+
