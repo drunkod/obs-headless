@@ -8,7 +8,8 @@ FROM ghcr.io/drunkod/obs-headless-builder:alpine-builder-latest
 
 
 RUN apk add --no-cache --update py3-paramiko py3-cairo py3-netifaces py3-zeroconf 
-# py3-avahi
+# py3-avahi 
+# python-xdg
 RUN apk add --no-cache --update xpra xpra-openrc dbus-x11 xhost xpra-webclient
 
 RUN apk add --no-cache xterm
@@ -19,11 +20,14 @@ ENV XPRA_DISPLAY=":100"
 
 ARG XPRA_PORT=10000
 ENV XPRA_PORT=$XPRA_PORT
-EXPOSE $XPRA_PORT
+EXPOSE $XPRA_PORT 6000
 
-COPY /custom/run_in_xpra /usr/bin/run_in_xpra
+COPY run_in_xpra /usr/bin/run_in_xpra
 
-CMD ["run_in_xpra", "xterm -background white"]
+RUN chmod +x /usr/bin/run_in_xpra
+
+# CMD ["run_in_xpra", "obs"]
+CMD ["/bin/sh"]
 
 # https://mybyways.com/blog/running-linux-gui-applications-in-a-docker-container-using-xpra
 # work with https codespaces server in chrome xdg-open http://localhost:10000/ in https://github.com/Xpra-org/xpra-html5 client

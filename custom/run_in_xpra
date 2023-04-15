@@ -1,2 +1,3 @@
 #!/bin/sh
-xpra start $XPRA_DISPLAY --pulseaudio=no --start-child="$*" --bind-tcp=0.0.0.0:$XPRA_PORT --no-daemon --exit-with-children
+# --encodings=png,rgb,webp
+xpra start --encodings=png,rgb,webp $XPRA_DISPLAY --pulseaudio=no --start-child="$*" --bind-tcp=0.0.0.0:$XPRA_PORT --no-daemon --exit-with-children
