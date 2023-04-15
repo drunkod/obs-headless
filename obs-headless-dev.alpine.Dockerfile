@@ -2,17 +2,19 @@
 ARG OBS_VERSION
 ARG OS_NAME
 
-# Use obs-headless-builder as the parent image
-FROM obs-headless-builder:${OS_NAME}-obs-${OBS_VERSION}
+# FROM obs-headless-builder:${OS_NAME}-obs-${OBS_VERSION}
+
+FROM ghcr.io/drunkod/obs-headless-builder:alpine-builder-latest
+
 
 # Set the environment variable for non-interactive mode
 ENV DEBIAN_FRONTEND=noninteractive
 # Set the working directory to /usr/local/src
 WORKDIR /usr/local/src
 
-# Define the installation path for obs-headless
-ENV OBS_HEADLESS_INSTALL_PATH="/opt/obs-headless"
-# Copy the source code from the current directory to the image
+ENV OBS_INSTALL_PATH="usr/share/obs"
+ENV OBS_HEADLESS_INSTALL_PATH="usr/share/obs-headles"
+
 COPY src/ /usr/local/src/obs-headless
 # Run commands to build obs-headless
 RUN cd obs-headless \
