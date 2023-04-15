@@ -1,6 +1,7 @@
 ARG OBS_VERSION
 ARG OS_NAME
 
+# TODO #4 Rewrite with docker mesa https://github.com/utensils/docker-opengl
 # FROM ghcr.io/drunkod/obs-headless-base:${OS_NAME}-base-${OBS_VERSION}
 FROM ghcr.io/drunkod/obs-headless-base:alpine-base-latest
 
