@@ -22,7 +22,7 @@ ARG XPRA_PORT=10000
 ENV XPRA_PORT=$XPRA_PORT
 EXPOSE $XPRA_PORT 6000
 
-COPY run_in_xpra /usr/bin/run_in_xpra
+COPY custom/run_in_xpra /usr/bin/run_in_xpra
 
 RUN chmod +x /usr/bin/run_in_xpra
 
