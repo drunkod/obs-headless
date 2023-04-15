@@ -9,7 +9,7 @@ FROM ghcr.io/drunkod/obs-headless-builder:alpine-builder-latest
 
 RUN apk add --no-cache --update py3-paramiko py3-cairo py3-netifaces py3-zeroconf 
 # py3-avahi 
-# python-xdg
+# TODO py3-xdg
 RUN apk add --no-cache --update xpra xpra-openrc dbus-x11 xhost xpra-webclient
 
 RUN apk add --no-cache xterm
