@@ -1,4 +1,4 @@
-FROM alpine:3.17
+FROM alpine:edge
 
 ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /usr/local/src
@@ -9,7 +9,7 @@ RUN apk update \
 RUN apk add --no-cache \
     meson \
     \
-    cmake pkgconf clang15-extra-tools build-base curl \
+    cmake pkgconf clang15-dev build-base curl \
     ccache git \
     \
     ffmpeg-dev x264-dev libcurl curl-dev mbedtls-dev jansson-dev \
