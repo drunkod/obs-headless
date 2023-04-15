@@ -1,12 +1,15 @@
 ARG OBS_VERSION
 ARG OS_NAME
 
-FROM obs-headless-builder:${OS_NAME}-obs-${OBS_VERSION}
+# FROM obs-headless-builder:${OS_NAME}-obs-${OBS_VERSION}
+
+FROM ghcr.io/drunkod/obs-headless-builder:alpine-builder-latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /usr/local/src
 
-ENV OBS_HEADLESS_INSTALL_PATH="/opt/obs-headless"
+ENV OBS_INSTALL_PATH="usr/share/obs"
+ENV OBS_HEADLESS_INSTALL_PATH="usr/share/obs-headles"
 COPY src/ /usr/local/src/obs-headless
 RUN cd obs-headless \
 	\
