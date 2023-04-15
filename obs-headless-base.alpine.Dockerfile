@@ -3,10 +3,13 @@ FROM alpine:3.17
 ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /usr/local/src
 
+RUN apk update \
+&& apk add --no-cache ninja-build --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/
+
 RUN apk add --no-cache \
     meson \
     \
-    cmake ninja-build pkgconf clang15-extra-tools build-base curl \
+    cmake pkgconf clang15-extra-tools build-base curl \
     ccache git \
     \
     ffmpeg-dev x264-dev libcurl curl-dev mbedtls-dev jansson-dev \
