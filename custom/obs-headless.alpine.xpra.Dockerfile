@@ -21,7 +21,7 @@ ARG XPRA_PORT=10000
 ENV XPRA_PORT=$XPRA_PORT
 EXPOSE $XPRA_PORT
 
-COPY run_in_xpra /usr/bin/run_in_xpra
+COPY /custom/run_in_xpra /usr/bin/run_in_xpra
 
 CMD ["run_in_xpra", "xterm -background white"]
 
