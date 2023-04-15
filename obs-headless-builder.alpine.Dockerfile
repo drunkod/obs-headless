@@ -9,7 +9,7 @@ FROM ghcr.io/drunkod/obs-headless-base:alpine-base-latest
 RUN apk add --no-cache mesa-dev mesa-dri-gallium mesa-egl mesa-gl mesa-gles libdrm libdrm-dev wayland-dev libx11-dev \
 	wayland-libs-egl musl wayland-libs-client libx11 
 RUN apk update \
-&& apk add --no-cache obs-studio --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/
+&& apk add --no-cache ffmpeg-dev=6.0-r10 obs-studio=29.0.2-r4 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/
 
 
 RUN apk info mesa-gl obs-studio
