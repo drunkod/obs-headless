@@ -1,0 +1,47 @@
+# .github/workflows/example.yml
+name: 'Extract rootfs from current branch'
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  extract-rootfs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set environment variable
+        run:  |
+          branch_id=${GITHUB_REF#refs/heads/}
+          pckg_name=obs-headless-xpra
+          echo "BRANCH_NAME=$branch_id" >> $GITHUB_ENV
+          echo "OUTPUT_FILE=${branch_id}-rootfs" >> $GITHUB_ENV
+          echo "IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/${pckg_name}:alpine-latest" >> $GITHUB_ENV
+          echo "RELEASE_VERSION=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+      - name: 'Extract rootfs' 
+        uses: custom/        
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.RELEASE_VERSION }}
+          release_name: Release ${{ env.RELEASE_VERSION }}
+          body: |
+            This is the first release of the project.
+          draft: false
+          prerelease: false
+
+      - name: Upload release asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OUTPUT_FILE: ${{ env.OUTPUT_FILE }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.OUTPUT_FILE }}.tar.gz
+          asset_name: ${{ env.OUTPUT_FILE }}.tar.gz
+          asset_content_type: application/gzip
