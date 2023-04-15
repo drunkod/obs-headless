@@ -6,11 +6,11 @@ WORKDIR /usr/local/src
 RUN apk add --no-cache \
     meson \
     \
-    cmake ninja pkgconf clang15-extra-tools build-base curl \
+    cmake ninja-build pkgconf clang15-extra-tools build-base curl \
     ccache git \
     \
     ffmpeg-dev x264-dev libcurl curl-dev mbedtls-dev jansson-dev \
-    luajit-dev python3-dev libx11-dev \
+    luajit-dev python3-dev libx11-dev swig \
     \
     qt5-qtbase-dev qt5-qtsvg-dev qt5-qtx11extras-dev qt5-qtwayland \
     \
