@@ -1,4 +1,4 @@
-# .github/workflows/example.yml
+
 name: 'Extract rootfs'
 
 on:
