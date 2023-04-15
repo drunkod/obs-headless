@@ -11,7 +11,7 @@ RUN apk info mesa-gl obs-studio
 
 # Build OBS from sources
 ENV OBS_BUILD_PATH="./build"
-ENV OBS_INSTALL_PATH="/usr/local/lib/"
+ENV OBS_INSTALL_PATH="usr/share/obs"
 
 # ARG OBS_VERSION
 
